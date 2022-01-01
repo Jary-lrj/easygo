@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://106.15.7.60/easygo
+    username:
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
