@@ -10,13 +10,17 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@DynamicUpdate
 @DynamicInsert
+@DynamicUpdate
 public class User {
     private long userId;
     private String userName;
     private String userPassword;
     private String userAvatar;
+    private String userPhonenumber;
+    private String userWechat;
+    private String userQq;
+    private String userEmail;
 
     @Id
     @Column(name = "user_id")
@@ -58,16 +62,56 @@ public class User {
         this.userAvatar = userAvatar;
     }
 
+    @Basic
+    @Column(name = "user_phonenumber")
+    public String getUserPhonenumber() {
+        return userPhonenumber;
+    }
+
+    public void setUserPhonenumber(String userPhonenumber) {
+        this.userPhonenumber = userPhonenumber;
+    }
+
+    @Basic
+    @Column(name = "user_wechat")
+    public String getUserWechat() {
+        return userWechat;
+    }
+
+    public void setUserWechat(String userWechat) {
+        this.userWechat = userWechat;
+    }
+
+    @Basic
+    @Column(name = "user_qq")
+    public String getUserQq() {
+        return userQq;
+    }
+
+    public void setUserQq(String userQq) {
+        this.userQq = userQq;
+    }
+
+    @Basic
+    @Column(name = "user_email")
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(userPassword, user.userPassword) && Objects.equals(userAvatar, user.userAvatar);
+        return userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(userPassword, user.userPassword) && Objects.equals(userAvatar, user.userAvatar) && Objects.equals(userPhonenumber, user.userPhonenumber) && Objects.equals(userWechat, user.userWechat) && Objects.equals(userQq, user.userQq) && Objects.equals(userEmail, user.userEmail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, userPassword, userAvatar);
+        return Objects.hash(userId, userName, userPassword, userAvatar, userPhonenumber, userWechat, userQq, userEmail);
     }
 }
