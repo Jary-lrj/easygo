@@ -2,17 +2,15 @@ package cn.edu.tongji.easygo.controller;
 
 import cn.edu.tongji.easygo.model.Information;
 import cn.edu.tongji.easygo.service.InformationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RequestMapping("api/v1/information")
 @RestController
 @CrossOrigin
-@Api(value="物品和需求信息",tags = "物品和需求信息",description = "物品和需求信息")
 public class InformationController {
 
     @Resource
@@ -45,20 +43,26 @@ public class InformationController {
         }
     }
 
-    @GetMapping("{informationType}")
-    @ApiOperation(value="按类型查询信息列表")
+    @GetMapping("/type/{informationType}")
     public ResponseEntity<Object> showInformationByType(@PathVariable Integer informationType){
-
-        return ResponseEntity.status(200).body("");
+        List<Information> informationList = informationService.findInformationByType(informationType);
+        return ResponseEntity.status(200).body(informationList);
     }
 
-    //需求，物品
-    //图片
-    //模糊查询
-    //类型查询
-    //价格排序
-    //查看某用户的供需
-    //发布时间排序
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Object> showInformationByUser(@PathVariable Long userId){
+        List<Information> informationList = informationService.findInformationByUser(userId);
+        return ResponseEntity.status(200).body(informationList);
+    }
+
+    //按类型和名称搜索（模糊查询）
+    @GetMapping("search/{informationType}/{content}")
+    public ResponseEntity<Object> searchByTypeAndContent(@PathVariable Integer informationType,
+                                                         @PathVariable String content){
+        List<Information> informationList = informationService.findInformationByTypeAndContent(informationType,content);
+        return ResponseEntity.status(200).body(informationList);
+    }
+
 
 
 }

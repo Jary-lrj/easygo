@@ -2,6 +2,8 @@ package cn.edu.tongji.easygo.service;
 
 import cn.edu.tongji.easygo.model.Information;
 
+import java.util.List;
+
 public interface InformationService {
 
     void addInformation(Information information);
@@ -12,5 +14,9 @@ public interface InformationService {
 
     void updateInformation(Information information);
 
+    List<Information> findInformationByType(Integer informationType);
 
+    List<Information> findInformationByUser(Long userId);
+
+    List<Information> findInformationByTypeAndContent(Integer informationType, String content);
 }

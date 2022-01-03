@@ -7,6 +7,8 @@ import cn.edu.tongji.easygo.util.JpaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InformationServiceImpl implements InformationService {
 
@@ -33,5 +35,23 @@ public class InformationServiceImpl implements InformationService {
         Information originInformation = informationRepository.findByInformationId(information.getInformationId());
         JpaUtil.copyNotNullProperties(information,originInformation);
         informationRepository.save(originInformation);
+    }
+
+    @Override
+    public List<Information> findInformationByType(Integer informationType) {
+        List<Information> allByInformationType = informationRepository.findInformationsByInformationType(informationType);
+        return allByInformationType;
+    }
+
+    @Override
+    public List<Information> findInformationByUser(Long userId) {
+        List<Information> allByInformationType = informationRepository.findInformationsByInformationUserId(userId);
+        return allByInformationType;
+    }
+
+    @Override
+    public List<Information> findInformationByTypeAndContent(Integer informationType, String content) {
+        List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType,content);
+        return allByInformationType;
     }
 }
