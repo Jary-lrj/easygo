@@ -4,9 +4,10 @@ import cn.edu.tongji.easygo.model.Information;
 import cn.edu.tongji.easygo.service.InformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 @RequestMapping("api/v1/information")
 @RestController
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value="物品和需求信息",tags = "物品和需求信息",description = "物品和需求信息")
 public class InformationController {
 
-    @Autowired
+    @Resource
     InformationService informationService;
 
     @PostMapping("")
