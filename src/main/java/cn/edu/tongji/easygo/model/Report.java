@@ -16,10 +16,10 @@ import java.util.Objects;
 public class Report {
     private long reportId;
     private long reportUserId;
-    private long reportInformationId;
+    private long reportThingId;
     private Integer reportType;
     private String reportReason;
-    private boolean reportStatus;
+    private Integer reportStatus;
     private Timestamp reportTime;
     private Boolean reportResult;
 
@@ -44,13 +44,13 @@ public class Report {
     }
 
     @Basic
-    @Column(name = "report_information_id")
-    public long getReportInformationId() {
-        return reportInformationId;
+    @Column(name = "report_thing_id")
+    public long getReportThingId() {
+        return reportThingId;
     }
 
-    public void setReportInformationId(long reportInformationId) {
-        this.reportInformationId = reportInformationId;
+    public void setReportThingId(long reportThingId) {
+        this.reportThingId = reportThingId;
     }
 
     @Basic
@@ -75,11 +75,11 @@ public class Report {
 
     @Basic
     @Column(name = "report_status")
-    public boolean isReportStatus() {
+    public Integer getReportStatus() {
         return reportStatus;
     }
 
-    public void setReportStatus(boolean reportStatus) {
+    public void setReportStatus(Integer reportStatus) {
         this.reportStatus = reportStatus;
     }
 
@@ -108,11 +108,11 @@ public class Report {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Report report = (Report) o;
-        return reportId == report.reportId && reportUserId == report.reportUserId && reportInformationId == report.reportInformationId && reportStatus == report.reportStatus && Objects.equals(reportType, report.reportType) && Objects.equals(reportReason, report.reportReason) && Objects.equals(reportTime, report.reportTime) && Objects.equals(reportResult, report.reportResult);
+        return reportId == report.reportId && reportUserId == report.reportUserId && reportThingId == report.reportThingId && reportStatus == report.reportStatus && Objects.equals(reportType, report.reportType) && Objects.equals(reportReason, report.reportReason) && Objects.equals(reportTime, report.reportTime) && Objects.equals(reportResult, report.reportResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reportId, reportUserId, reportInformationId, reportType, reportReason, reportStatus, reportTime, reportResult);
+        return Objects.hash(reportId, reportUserId, reportThingId, reportType, reportReason, reportStatus, reportTime, reportResult);
     }
 }
