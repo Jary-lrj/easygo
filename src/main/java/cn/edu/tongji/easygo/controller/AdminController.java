@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/image")
+@RequestMapping("/api/v1/admin")
 @CrossOrigin
 @Api(value="管理员",tags = "管理员",description = "管理员")
 public class AdminController {
