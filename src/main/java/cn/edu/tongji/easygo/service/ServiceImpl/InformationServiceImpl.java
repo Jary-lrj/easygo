@@ -31,8 +31,8 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public void updateInformation(Information information) {
-        Information originInformation = informationRepository.findByInformationId(information.getInformationId());
+    public void updateInformation(Long informationId, Information information) {
+        Information originInformation = informationRepository.findByInformationId(informationId);
         JpaUtil.copyNotNullProperties(information,originInformation);
         informationRepository.save(originInformation);
     }

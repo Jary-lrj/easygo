@@ -18,5 +18,5 @@ public interface UserService {
 
     public User showConcreteUser(Long userId);
 
-    public User updateUser(User updateInfo);
+    public User updateUser(Long userId, User updateInfo);
 }

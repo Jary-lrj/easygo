@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User updateUserInfo) {
-        User originUserInfo = userRepository.findByUserId(updateUserInfo.getUserId());
+    public User updateUser(Long userId, User updateUserInfo) {
+        User originUserInfo = userRepository.findByUserId(userId);
         JpaUtil.copyNotNullProperties(updateUserInfo, originUserInfo);
         return userRepository.save(originUserInfo);
     }

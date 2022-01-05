@@ -12,7 +12,7 @@ public interface InformationService {
 
     Information showInformation(Long informationId);
 
-    void updateInformation(Information information);
+    void updateInformation(Long informationId,Information information);
 
     List<Information> findInformationByType(Integer informationType);
 

@@ -76,7 +76,7 @@ public class UserController {
     @PutMapping("{userId}")
     public ResponseEntity<Object> updateUser(@PathVariable("userId") Long userId, @RequestBody User updateUserInfo) {
         try {
-            userService.updateUser(updateUserInfo);
+            userService.updateUser(userId , updateUserInfo);
             return ResponseEntity.status(200).body("修改成功");
         } catch (Exception e) {
             return ResponseEntity.status(200).body("修改失败");

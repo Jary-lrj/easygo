@@ -18,6 +18,8 @@ public class Advertisement {
     private Timestamp advertisementTime;
     private String advertisementUrl;
     private String advertisementTitle;
+    private Integer advertisementState;
+    private String advertisementImage;
 
     @Id
     @Column(name = "advertisement_id")
@@ -59,16 +61,41 @@ public class Advertisement {
         this.advertisementTitle = advertisementTitle;
     }
 
+    @Basic
+    @Column(name = "advertisement_state")
+    public Integer getAdvertisementState() {
+        return advertisementState;
+    }
+
+    public void setAdvertisementState(Integer advertisementState) {
+        this.advertisementState = advertisementState;
+    }
+
+    @Basic
+    @Column(name = "advertisement_image")
+    public String getAdvertisementImage() {
+        return advertisementImage;
+    }
+
+    public void setAdvertisementImage(String advertisementImage) {
+        this.advertisementImage = advertisementImage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Advertisement that = (Advertisement) o;
-        return advertisementId == that.advertisementId && Objects.equals(advertisementTime, that.advertisementTime) && Objects.equals(advertisementUrl, that.advertisementUrl) && Objects.equals(advertisementTitle, that.advertisementTitle);
+        return advertisementId == that.advertisementId &&
+                Objects.equals(advertisementTime, that.advertisementTime) &&
+                Objects.equals(advertisementUrl, that.advertisementUrl) &&
+                Objects.equals(advertisementTitle, that.advertisementTitle) &&
+                Objects.equals(advertisementState, that.advertisementState) &&
+                Objects.equals(advertisementImage, that.advertisementImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(advertisementId, advertisementTime, advertisementUrl, advertisementTitle);
+        return Objects.hash(advertisementId, advertisementTime, advertisementUrl, advertisementTitle, advertisementState, advertisementImage);
     }
 }

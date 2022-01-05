@@ -43,7 +43,7 @@ public class InformationController {
     @PutMapping("{informationId}")
     public ResponseEntity<Object> updateInformation(@PathVariable("informationId") Long informationId,@RequestBody Information information){
         try {
-            informationService.updateInformation(information);
+            informationService.updateInformation(informationId, information);
             return ResponseEntity.status(200).body("修改成功");
         } catch (Exception e) {
             return ResponseEntity.status(200).body("修改失败");
