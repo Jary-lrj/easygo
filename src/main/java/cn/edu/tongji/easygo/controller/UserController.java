@@ -5,18 +5,22 @@ import cn.edu.tongji.easygo.dto.UserLoginDTO;
 import cn.edu.tongji.easygo.dto.UserRegisterDTO;
 import cn.edu.tongji.easygo.model.User;
 import cn.edu.tongji.easygo.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-
 @RestController
 @RequestMapping("api/v1/user")
+@CrossOrigin
+@Api(value="用户",tags = "用户",description = "用户")
 public class UserController {
     @Resource
     private UserService userService;
 
+    @ApiOperation("登录")
     @GetMapping("login")
     public ResponseEntity<Object> login(@RequestParam("userId") Long userId, @RequestParam("userPassword") String password) {
         UserLoginDTO info = new UserLoginDTO();
@@ -34,6 +38,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation("注册")
     @PostMapping("register")
     public ResponseEntity<Object> register(@RequestBody UserRegisterDTO registerInfo) {
         if (userService.register(registerInfo) != null)
@@ -42,12 +47,14 @@ public class UserController {
             return ResponseEntity.status(200).body("注册失败");
     }
 
+    @ApiOperation("删除用户")
     @DeleteMapping("{userId}")
     public ResponseEntity<Object> deleteUser(@PathVariable("userId") Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.status(200).body("删除成功");
     }
 
+    @ApiOperation("查询所有用户信息")
     @GetMapping("")
     public ResponseEntity<Object> showAllUsers() {
         if (!StpUtil.hasRole("admin"))
@@ -55,6 +62,7 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.showAllUser());
     }
 
+    @ApiOperation("查询某用户信息")
     @GetMapping("{userId}")
     public ResponseEntity<Object> showConcreteUser(@PathVariable("userId") Long userId) {
         try {
@@ -64,6 +72,7 @@ public class UserController {
         }
     }
 
+    @ApiOperation("修改某用户信息")
     @PutMapping("{userId}")
     public ResponseEntity<Object> updateUser(@PathVariable("userId") Long userId, @RequestBody User updateUserInfo) {
         try {

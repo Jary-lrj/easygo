@@ -17,7 +17,7 @@ public class Report {
     private long reportId;
     private long reportUserId;
     private long reportInformationId;
-    private String reportType;
+    private Integer reportType;
     private String reportReason;
     private boolean reportStatus;
     private Timestamp reportTime;
@@ -55,11 +55,11 @@ public class Report {
 
     @Basic
     @Column(name = "report_type")
-    public String getReportType() {
+    public Integer getReportType() {
         return reportType;
     }
 
-    public void setReportType(String reportType) {
+    public void setReportType(Integer reportType) {
         this.reportType = reportType;
     }
 
