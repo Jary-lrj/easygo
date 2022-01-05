@@ -56,5 +56,12 @@ public class AdvertisementController {
             return ResponseEntity.status(200).body("修改失败");
         }
     }
-    
+
+    @ApiOperation("查询展示到首页的（state为1）的广告信息")
+    @GetMapping("front")
+    public ResponseEntity<Object> frontAdvertisements(){
+        List<Advertisement> advertisements = advertisementService.showFrontAdvertisement();
+        return ResponseEntity.status(200).body(advertisements);
+    }
+
 }

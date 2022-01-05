@@ -16,4 +16,6 @@ public interface AdvertisementService {
     boolean updateAdvertisement(Long advertisementId,Advertisement after);
 
     void deleteAdvertisement(Long advertisementId);
+
+    List<Advertisement> showFrontAdvertisement();
 }

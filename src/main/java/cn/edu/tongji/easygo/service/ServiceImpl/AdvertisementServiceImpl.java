@@ -43,4 +43,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public void deleteAdvertisement(Long advertisementId) {
         advertisementRepository.deleteAdvertisementByAdvertisementId(advertisementId);
     }
+
+    @Override
+    public List<Advertisement> showFrontAdvertisement() {
+        List<Advertisement> advertisements = advertisementRepository.findAdvertisementsByAdvertisementState(1);
+        return advertisements;
+    }
 }
