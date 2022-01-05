@@ -15,7 +15,7 @@ class EasygoApplicationTests {
 
     @Test
     void contextLoads() {
-        String res = stringEncryptor.encrypt("xxx");
+        String res = stringEncryptor.encrypt("");
         System.out.println(res);
     }
 }

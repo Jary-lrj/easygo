@@ -19,7 +19,7 @@ public class OssController {
 
     @ApiOperation("上传图片")
     @PostMapping
-    public ResponseEntity<Object> uploadPic(@RequestParam MultipartFile file)
+    public ResponseEntity<Object> uploadPic(MultipartFile file)
     {
         String url = ossService.uploadFilePic(file);
         return ResponseEntity.status(200).body(url);

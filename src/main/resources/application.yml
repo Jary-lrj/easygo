@@ -4,6 +4,18 @@ spring:
     username: ENC(qr6AOKzh79M/le7a5MkXbg==)
     password: ENC(D80JExy0L/nQsHaA8mVbNP8x4BUPWJXy)
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 47.102.220.32
+    port: 6380
+    password: ENC(hCMqN/FDei74ld2pRq+yAlC5RzcxfXCF)
+    database: 0
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
 
 jasypt:
   encryptor:
