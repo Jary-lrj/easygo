@@ -32,11 +32,18 @@ public class AdvertisementController {
         return ResponseEntity.status(200).body("删除成功");
     }
 
-    @ApiOperation("查询所有广告信息")
-    @GetMapping("")
-    public ResponseEntity<Object> showAllAdvertisements(){
-        List<Advertisement> advertisements = advertisementService.showAllAdvertisement();
-        return ResponseEntity.status(200).body(advertisements);
+    @ApiOperation("分页查询所有广告信息")
+    @GetMapping("{pageNum}/{sizeNum}")
+    public ResponseEntity<Object> showAllAdvertisements(@PathVariable Integer pageNum,
+                                                        @PathVariable Integer sizeNum){
+        try{
+            List<Advertisement> advertisements = advertisementService.showAllAdvertisement(pageNum, sizeNum);
+            return ResponseEntity.status(200).body(advertisements);
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(200).body("查询失败");
+        }
     }
 
     @ApiOperation("查询某广告信息")

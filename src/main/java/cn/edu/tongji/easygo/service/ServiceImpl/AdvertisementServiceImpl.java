@@ -4,6 +4,8 @@ import cn.edu.tongji.easygo.model.Advertisement;
 import cn.edu.tongji.easygo.repository.AdvertisementRepository;
 import cn.edu.tongji.easygo.service.AdvertisementService;
 import cn.edu.tongji.easygo.util.JpaUtil;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<Advertisement> showAllAdvertisement() {
-        return advertisementRepository.findAll();
+    public List<Advertisement> showAllAdvertisement(int pageNum,int sizeNum) {
+        Pageable page = PageRequest.of(pageNum,sizeNum);
+        Page<Advertisement> advertisements = advertisementRepository.findAll(page);
+        return advertisements.getContent();
     }
 
     @Override

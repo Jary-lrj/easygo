@@ -9,7 +9,7 @@ import java.util.List;
 public interface AdvertisementService {
     boolean addAdvertisement(Advertisement advertisement);
 
-    List<Advertisement> showAllAdvertisement();
+    List<Advertisement> showAllAdvertisement(int pageNum,int sizeNum);
 
     Advertisement showConcreteAdvertisement(Long advertisementId);
 
