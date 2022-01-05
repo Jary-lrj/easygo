@@ -54,4 +54,13 @@ public class ImagePK implements Serializable {
     public int hashCode() {
         return Objects.hash(imageId, imageUrl, imageType);
     }
+
+    public ImagePK(long imageId, String imageUrl, Integer imageType) {
+        this.imageId = imageId;
+        this.imageUrl = imageUrl;
+        this.imageType = imageType;
+    }
+
+    public ImagePK() {
+    }
 }

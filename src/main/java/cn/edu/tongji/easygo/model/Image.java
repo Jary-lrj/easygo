@@ -61,4 +61,12 @@ public class Image {
         return Objects.hash(imageId, imageUrl, imageType);
     }
 
+    public Image(long imageId, String imageUrl, Integer imageType) {
+        this.imageId = imageId;
+        this.imageUrl = imageUrl;
+        this.imageType = imageType;
+    }
+
+    public Image() {
+    }
 }
