@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("api/v1/complain")
 @RestController
+@RequestMapping("/api/v1/image")
 @CrossOrigin
-@Api(value="举报",tags = "举报",description = "举报")
-public class ComplainController {
-
-
+@Api(value="图片",tags = "图片",description = "图片")
+public class ImageController {
 
 }
