@@ -14,7 +14,7 @@ public interface UserService {
 
     public void deleteUser(Long userId);
 
-    public List<User> showAllUser();
+    public List<User> showAllUser(int pageNum,int sizeNum);
 
     public User showConcreteUser(Long userId);
 

@@ -54,12 +54,13 @@ public class UserController {
         return ResponseEntity.status(200).body("删除成功");
     }
 
-    @ApiOperation("查询所有用户信息")
-    @GetMapping("")
-    public ResponseEntity<Object> showAllUsers() {
+    @ApiOperation("分页查询所有用户信息")
+    @GetMapping("{pageNum}/{sizeNum}")
+    public ResponseEntity<Object> showAllUsers(@PathVariable Integer pageNum,
+                                               @PathVariable Integer sizeNum){
         if (!StpUtil.hasRole("admin"))
             return ResponseEntity.status(200).body("您无权操作");
-        return ResponseEntity.status(200).body(userService.showAllUser());
+        return ResponseEntity.status(200).body(userService.showAllUser(pageNum, sizeNum));
     }
 
     @ApiOperation("查询某用户信息")
