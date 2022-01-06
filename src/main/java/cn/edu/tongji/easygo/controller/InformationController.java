@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/information")
 @RestController
 @CrossOrigin
-@Api(value="需求和物品",tags = "需求和物品",description = "需求和物品")
+@Api(value = "需求和物品", tags = "需求和物品", description = "需求和物品")
 public class InformationController {
 
     @Resource
@@ -21,27 +21,27 @@ public class InformationController {
 
     @ApiOperation("添加需求/物品")
     @PostMapping("")
-    public Result addInformation(@RequestBody Information information){
+    public Result addInformation(@RequestBody Information information) {
         informationService.addInformation(information);
         return Result.wrapSuccessfulResult("添加成功");
     }
 
     @ApiOperation("删除某需求/物品")
     @DeleteMapping("{informationId}")
-    public Result deleteInformation(@PathVariable("informationId") Long informationId){
+    public Result deleteInformation(@PathVariable("informationId") Long informationId) {
         informationService.deleteInformation(informationId);
         return Result.wrapSuccessfulResult("删除成功");
     }
 
     @ApiOperation("查询某需求/物品信息")
     @GetMapping("{informationId}")
-    public Result showInformation(@PathVariable("informationId") Long informationId){
+    public Result showInformation(@PathVariable("informationId") Long informationId) {
         return Result.wrapSuccessfulResult(informationService.showInformation(informationId));
     }
 
     @ApiOperation("修改某需求/物品信息")
     @PutMapping("{informationId}")
-    public Result updateInformation(@PathVariable("informationId") Long informationId,@RequestBody Information information){
+    public Result updateInformation(@PathVariable("informationId") Long informationId, @RequestBody Information information) {
         try {
             informationService.updateInformation(informationId, information);
             return Result.wrapSuccessfulResult("修改成功");
@@ -52,14 +52,14 @@ public class InformationController {
 
     @ApiOperation("查询需求/物品信息列表")
     @GetMapping("/type/{informationType}")
-    public Result showInformationByType(@PathVariable Integer informationType){
+    public Result showInformationByType(@PathVariable Integer informationType) {
         List<Information> informationList = informationService.findInformationByType(informationType);
         return Result.wrapSuccessfulResult(informationList);
     }
 
     @ApiOperation("查询某用户的需求和物品信息")
     @GetMapping("/user/{userId}")
-    public Result showInformationByUser(@PathVariable Long userId){
+    public Result showInformationByUser(@PathVariable Long userId) {
         List<Information> informationList = informationService.findInformationByUser(userId);
         return Result.wrapSuccessfulResult(informationList);
     }
@@ -67,9 +67,14 @@ public class InformationController {
     @ApiOperation("按类型和名称搜索需求/物品信息")
     @GetMapping("search/{informationType}/{content}")
     public Result searchByTypeAndContent(@PathVariable Integer informationType,
-                                                         @PathVariable String content){
-        List<Information> informationList = informationService.findInformationByTypeAndContent(informationType,content);
+                                         @PathVariable String content) {
+        List<Information> informationList = informationService.findInformationByTypeAndContent(informationType, content);
         return Result.wrapSuccessfulResult(informationList);
     }
 
+    @GetMapping("search/{keyword}")
+    public Result searchByKeyword(@PathVariable String keyword) {
+        List<Information> informationList = informationService.findInformationByKeyword(keyword);
+        return Result.wrapSuccessfulResult(informationList);
+    }
 }

@@ -54,4 +54,9 @@ public class InformationServiceImpl implements InformationService {
         List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType,content);
         return allByInformationType;
     }
+
+    @Override
+    public List<Information> findInformationByKeyword(String keyword) {
+        return informationRepository.findByKeyword(keyword);
+    }
 }
