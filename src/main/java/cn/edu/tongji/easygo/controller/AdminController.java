@@ -1,11 +1,12 @@
 package cn.edu.tongji.easygo.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.edu.tongji.easygo.model.Admin;
 import cn.edu.tongji.easygo.service.AdminService;
+import cn.edu.tongji.easygo.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,15 +19,15 @@ public class AdminController {
 
     @ApiOperation("登录")
     @GetMapping("login")
-    public ResponseEntity<Object> login(@RequestParam("adminId") Long adminId, @RequestParam("adminPassword") String adminPassword) {
+    public Result login(@RequestParam("adminId") Long adminId, @RequestParam("adminPassword") String adminPassword) {
         Admin admin = adminService.login(adminId,adminPassword);
         if(admin!=null){
             //管理员登录逻辑是否和用户一样
 
-            return ResponseEntity.status(200).body("");
+            return Result.wrapSuccessfulResult("");
         }
         else{
-            return ResponseEntity.status(-1).body("登录失败");
+            return Result.wrapErrorResult("登录失败");
         }
     }
 

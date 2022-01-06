@@ -2,9 +2,9 @@ package cn.edu.tongji.easygo.controller;
 
 import cn.edu.tongji.easygo.model.Comment;
 import cn.edu.tongji.easygo.service.CommentService;
+import cn.edu.tongji.easygo.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,27 +19,27 @@ public class CommentController {
 
     @ApiOperation("添加评论")
     @PostMapping("")
-    public ResponseEntity<Object> addComment(@RequestBody Comment comment) {
+    public Result addComment(@RequestBody Comment comment) {
         commentService.addComment(comment);
-        return ResponseEntity.status(200).body("评论成功");
+        return Result.wrapSuccessfulResult("评论成功");
     }
 
     @ApiOperation("删除评论")
     @DeleteMapping("{commentId}")
-    public ResponseEntity<Object> deleteComment(@PathVariable("commentId") Long commentId) {
+    public Result deleteComment(@PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
-        return ResponseEntity.status(200).body("删除成功");
+        return Result.wrapSuccessfulResult("删除成功");
     }
 
     @ApiOperation("查看某需求、物品的评论")
     @GetMapping("information/{informationId}")
-    public ResponseEntity<Object> showCommentByInformation(@PathVariable("informationId") Long informationId) {
-        return ResponseEntity.status(200).body(commentService.showCommentByInformation(informationId));
+    public Result showCommentByInformation(@PathVariable("informationId") Long informationId) {
+        return Result.wrapSuccessfulResult(commentService.showCommentByInformation(informationId));
     }
 
     @ApiOperation("查看某评论的信息")
     @GetMapping("{commentId}")
-    public ResponseEntity<Object> showComment(@PathVariable("commentId") Long commentId) {
-        return ResponseEntity.status(200).body(commentService.showComment(commentId));
+    public Result showComment(@PathVariable("commentId") Long commentId) {
+        return Result.wrapSuccessfulResult(commentService.showComment(commentId));
     }
 }

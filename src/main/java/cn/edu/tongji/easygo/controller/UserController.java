@@ -5,6 +5,7 @@ import cn.edu.tongji.easygo.dto.UserLoginDTO;
 import cn.edu.tongji.easygo.dto.UserRegisterDTO;
 import cn.edu.tongji.easygo.model.User;
 import cn.edu.tongji.easygo.service.UserService;
+import cn.edu.tongji.easygo.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class UserController {
 
     @ApiOperation("登录")
     @GetMapping("login")
-    public ResponseEntity<Object> login(@RequestParam("userId") Long userId, @RequestParam("userPassword") String password) {
+    public Result login(@RequestParam("userId") Long userId, @RequestParam("userPassword") String password) {
         UserLoginDTO info = new UserLoginDTO();
         User loginUser = userService.login(userId, password);
         if (loginUser != null) {
@@ -32,51 +33,51 @@ public class UserController {
             info.setUserAvatar(loginUser.getUserAvatar());
             info.setResult("登录成功");
             info.setToken(StpUtil.getTokenValue());
-            return ResponseEntity.status(200).body(info);
+            return Result.wrapSuccessfulResult(info);
         } else {
-            return ResponseEntity.status(-1).body("登录失败");
+            return Result.wrapErrorResult("登录失败");
         }
     }
 
     @ApiOperation("注册")
     @PostMapping("register")
-    public ResponseEntity<Object> register(@RequestBody UserRegisterDTO registerInfo) {
+    public Result register(@RequestBody UserRegisterDTO registerInfo) {
         if (userService.register(registerInfo) != null)
-            return ResponseEntity.status(200).body("注册成功");
+            return Result.wrapSuccessfulResult("注册成功");
         else
-            return ResponseEntity.status(-1).body("注册失败");
+            return Result.wrapErrorResult("注册失败");
     }
 
     @ApiOperation("删除用户")
     @DeleteMapping("{userId}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("userId") Long userId) {
+    public Result deleteUser(@PathVariable("userId") Long userId) {
         userService.deleteUser(userId);
-        return ResponseEntity.status(200).body("删除成功");
+        return Result.wrapSuccessfulResult("删除成功");
     }
 
     @ApiOperation("分页查询所有用户信息")
     @GetMapping("{pageNum}/{sizeNum}")
-    public ResponseEntity<Object> showAllUsers(@PathVariable Integer pageNum,
+    public Result showAllUsers(@PathVariable Integer pageNum,
                                                @PathVariable Integer sizeNum){
         if (!StpUtil.hasRole("admin"))
-            return ResponseEntity.status(-1).body("您无权操作");
-        return ResponseEntity.status(200).body(userService.showAllUser(pageNum, sizeNum));
+            return Result.wrapErrorResult("您无权操作");
+        return Result.wrapSuccessfulResult(userService.showAllUser(pageNum, sizeNum));
     }
 
     @ApiOperation("查询某用户信息")
     @GetMapping("{userId}")
-    public ResponseEntity<Object> showConcreteUser(@PathVariable("userId") Long userId) {
-        return ResponseEntity.status(200).body(userService.showConcreteUser(userId));
+    public Result showConcreteUser(@PathVariable("userId") Long userId) {
+        return Result.wrapSuccessfulResult(userService.showConcreteUser(userId));
     }
 
     @ApiOperation("修改某用户信息")
     @PutMapping("{userId}")
-    public ResponseEntity<Object> updateUser(@PathVariable("userId") Long userId, @RequestBody User updateUserInfo) {
+    public Result updateUser(@PathVariable("userId") Long userId, @RequestBody User updateUserInfo) {
         try {
             userService.updateUser(userId , updateUserInfo);
-            return ResponseEntity.status(200).body("修改成功");
+            return Result.wrapSuccessfulResult("修改成功");
         } catch (Exception e) {
-            return ResponseEntity.status(-1).body("修改失败");
+            return Result.wrapErrorResult("修改失败");
         }
     }
 }

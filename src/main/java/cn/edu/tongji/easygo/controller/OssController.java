@@ -2,10 +2,10 @@ package cn.edu.tongji.easygo.controller;
 
 import cn.edu.tongji.easygo.service.OssService;
 
+import cn.edu.tongji.easygo.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,9 +19,9 @@ public class OssController {
 
     @ApiOperation("上传图片")
     @PostMapping
-    public ResponseEntity<Object> uploadPic(MultipartFile file)
+    public Result uploadPic(MultipartFile file)
     {
         String url = ossService.uploadFilePic(file);
-        return ResponseEntity.status(200).body(url);
+        return Result.wrapSuccessfulResult(url);
     }
 }
