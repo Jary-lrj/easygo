@@ -20,6 +20,8 @@ public class Message {
     private String messageContent;
     private Timestamp messageTime;
     private boolean messageRead;
+    private String messageTitle;
+    private Long messageSenderId;
 
     @Id
     @Column(name = "message_id")
@@ -81,16 +83,36 @@ public class Message {
         this.messageRead = messageRead;
     }
 
+    @Basic
+    @Column(name = "message_title")
+    public String getMessageTitle() {
+        return messageTitle;
+    }
+
+    public void setMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
+    }
+
+    @Basic
+    @Column(name = "message_sender_id")
+    public Long getMessageSenderId() {
+        return messageSenderId;
+    }
+
+    public void setMessageSenderId(Long messageSenderId) {
+        this.messageSenderId = messageSenderId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        return messageId == message.messageId && messageUserId == message.messageUserId && messageRead == message.messageRead && Objects.equals(messageReportId, message.messageReportId) && Objects.equals(messageContent, message.messageContent) && Objects.equals(messageTime, message.messageTime);
+        return messageId == message.messageId && messageUserId == message.messageUserId && messageRead == message.messageRead && Objects.equals(messageReportId, message.messageReportId) && Objects.equals(messageContent, message.messageContent) && Objects.equals(messageTime, message.messageTime) && Objects.equals(messageTitle, message.messageTitle) && Objects.equals(messageSenderId, message.messageSenderId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(messageId, messageUserId, messageReportId, messageContent, messageTime, messageRead);
+        return Objects.hash(messageId, messageUserId, messageReportId, messageContent, messageTime, messageRead, messageTitle, messageSenderId);
     }
 }
