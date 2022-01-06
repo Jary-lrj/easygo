@@ -22,8 +22,7 @@ public class InformationController {
     @ApiOperation("添加需求/物品")
     @PostMapping("")
     public Result addInformation(@RequestBody Information information) {
-        informationService.addInformation(information);
-        return Result.wrapSuccessfulResult("添加成功");
+        return Result.wrapSuccessfulResult(informationService.addInformation(information));
     }
 
     @ApiOperation("删除某需求/物品")

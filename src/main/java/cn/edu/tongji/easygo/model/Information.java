@@ -3,10 +3,7 @@ package cn.edu.tongji.easygo.model;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -24,6 +21,7 @@ public class Information {
     private Timestamp informationTime;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "information_id")
     public long getInformationId() {
         return informationId;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InformationService {
 
-    void addInformation(Information information);
+    Information addInformation(Information information);
 
     void deleteInformation(Long informationId);
 

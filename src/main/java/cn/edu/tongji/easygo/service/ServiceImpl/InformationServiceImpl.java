@@ -16,8 +16,8 @@ public class InformationServiceImpl implements InformationService {
     InformationRepository informationRepository;
 
     @Override
-    public void addInformation(Information information) {
-        informationRepository.save(information);
+    public Information addInformation(Information information) {
+        return informationRepository.save(information);
     }
 
     @Override
