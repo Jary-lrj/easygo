@@ -21,6 +21,7 @@ public class User {
     private String userWechat;
     private String userQq;
     private String userEmail;
+    private Integer userRole;
 
     @Id
     @Column(name = "user_id")
@@ -93,6 +94,16 @@ public class User {
     }
 
     @Basic
+    @Column(name = "user_role")
+    public Integer getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
+    }
+
+    @Basic
     @Column(name = "user_email")
     public String getUserEmail() {
         return userEmail;
@@ -107,11 +118,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(userPassword, user.userPassword) && Objects.equals(userAvatar, user.userAvatar) && Objects.equals(userPhonenumber, user.userPhonenumber) && Objects.equals(userWechat, user.userWechat) && Objects.equals(userQq, user.userQq) && Objects.equals(userEmail, user.userEmail);
+        return userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(userPassword, user.userPassword) && Objects.equals(userAvatar, user.userAvatar) && Objects.equals(userPhonenumber, user.userPhonenumber) && Objects.equals(userWechat, user.userWechat) && Objects.equals(userQq, user.userQq) && Objects.equals(userEmail, user.userEmail)&& Objects.equals(userRole, user.userRole);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, userPassword, userAvatar, userPhonenumber, userWechat, userQq, userEmail);
+        return Objects.hash(userId, userName, userPassword, userAvatar, userPhonenumber, userWechat, userQq, userEmail,userRole);
     }
 }
