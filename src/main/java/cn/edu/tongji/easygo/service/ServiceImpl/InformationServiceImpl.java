@@ -33,7 +33,7 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public void updateInformation(Long informationId, Information information) {
         Information originInformation = informationRepository.findByInformationId(informationId);
-        JpaUtil.copyNotNullProperties(information,originInformation);
+        JpaUtil.copyNotNullProperties(information, originInformation);
         informationRepository.save(originInformation);
     }
 
@@ -51,7 +51,12 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public List<Information> findInformationByTypeAndContent(Integer informationType, String content) {
-        List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType,content);
+        List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType, content);
         return allByInformationType;
+    }
+
+    @Override
+    public List<Information> findInformationByKeyword(String keyword) {
+        return informationRepository.findByInformationName(keyword);
     }
 }
