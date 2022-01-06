@@ -59,6 +59,10 @@ public class Report {
         return reportType;
     }
 
+    public void setReportType(int reportType) {
+        this.reportType = reportType;
+    }
+
     public void setReportType(Integer reportType) {
         this.reportType = reportType;
     }
@@ -77,6 +81,10 @@ public class Report {
     @Column(name = "report_status")
     public Integer getReportStatus() {
         return reportStatus;
+    }
+
+    public void setReportStatus(int reportStatus) {
+        this.reportStatus = reportStatus;
     }
 
     public void setReportStatus(Integer reportStatus) {

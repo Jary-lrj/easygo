@@ -25,7 +25,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report> findReportByStatus(int i) {
+    public List<Report> findReportByType(int i) {
         return reportRepository.findReportsByReportType(i);
     }
 
@@ -45,5 +45,10 @@ public class ReportServiceImpl implements ReportService {
         Report reportByReportId = reportRepository.findReportByReportId(reportId);
         JpaUtil.copyNotNullProperties(report,reportByReportId);
         reportRepository.save(reportByReportId);
+    }
+
+    @Override
+    public List<Report> findReportByStatus(Boolean isDeal) {
+        return reportRepository.findReportsByReportStatus(isDeal);
     }
 }

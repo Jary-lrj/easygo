@@ -15,4 +15,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     Report findReportByReportId(Long reportId);
 
     List<Report> findReportsByReportType(int type);
+
+    List<Report> findReportsByReportStatus(Boolean isDeal);
 }

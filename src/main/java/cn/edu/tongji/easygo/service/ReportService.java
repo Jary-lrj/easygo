@@ -11,11 +11,13 @@ public interface ReportService {
 
     Report showConcreteReport(Long reportId);
 
-    List<Report> findReportByStatus(int i);
+    List<Report> findReportByType(int i);
 
     List<Report> findAllReport();
 
     void deleteReport(Long reportId);
 
     void updateReport(Long reportId, Report report);
+
+    List<Report> findReportByStatus(Boolean isDeal);
 }
