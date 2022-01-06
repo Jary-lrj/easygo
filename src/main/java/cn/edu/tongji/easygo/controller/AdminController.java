@@ -21,11 +21,12 @@ public class AdminController {
     public ResponseEntity<Object> login(@RequestParam("adminId") Long adminId, @RequestParam("adminPassword") String adminPassword) {
         Admin admin = adminService.login(adminId,adminPassword);
         if(admin!=null){
+            //管理员登录逻辑是否和用户一样
 
             return ResponseEntity.status(200).body("");
         }
         else{
-            return ResponseEntity.status(200).body("登录失败");
+            return ResponseEntity.status(-1).body("登录失败");
         }
     }
 

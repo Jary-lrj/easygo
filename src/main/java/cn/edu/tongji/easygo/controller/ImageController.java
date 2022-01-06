@@ -23,16 +23,16 @@ public class ImageController {
                                            @PathVariable Long id,
                                            @PathVariable String imageUrl){
         if(type!=0&&type!=1)
-            return ResponseEntity.status(200).body("添加失败");
+            return ResponseEntity.status(-1).body("添加失败");
 
         try {
             boolean flag = imageService.addImage(id, imageUrl, type);
             if(flag)
                 return ResponseEntity.status(200).body("添加成功");
             else
-                return ResponseEntity.status(200).body("已经添加过");
+                return ResponseEntity.status(-1).body("已经添加过");
         }catch(Exception e){
-            return ResponseEntity.status(200).body("添加失败");
+            return ResponseEntity.status(-1).body("添加失败");
         }
     }
 
@@ -52,6 +52,6 @@ public class ImageController {
         if(flag)
             return ResponseEntity.status(200).body("删除成功");
         else
-            return ResponseEntity.status(200).body("删除失败");
+            return ResponseEntity.status(-1).body("删除失败");
     }
 }

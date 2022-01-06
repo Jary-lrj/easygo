@@ -34,7 +34,7 @@ public class UserController {
             info.setToken(StpUtil.getTokenValue());
             return ResponseEntity.status(200).body(info);
         } else {
-            return ResponseEntity.status(200).body("登录失败");
+            return ResponseEntity.status(-1).body("登录失败");
         }
     }
 
@@ -44,7 +44,7 @@ public class UserController {
         if (userService.register(registerInfo) != null)
             return ResponseEntity.status(200).body("注册成功");
         else
-            return ResponseEntity.status(200).body("注册失败");
+            return ResponseEntity.status(-1).body("注册失败");
     }
 
     @ApiOperation("删除用户")
@@ -59,18 +59,14 @@ public class UserController {
     public ResponseEntity<Object> showAllUsers(@PathVariable Integer pageNum,
                                                @PathVariable Integer sizeNum){
         if (!StpUtil.hasRole("admin"))
-            return ResponseEntity.status(200).body("您无权操作");
+            return ResponseEntity.status(-1).body("您无权操作");
         return ResponseEntity.status(200).body(userService.showAllUser(pageNum, sizeNum));
     }
 
     @ApiOperation("查询某用户信息")
     @GetMapping("{userId}")
     public ResponseEntity<Object> showConcreteUser(@PathVariable("userId") Long userId) {
-        try {
-            return ResponseEntity.status(200).body(userService.showConcreteUser(userId));
-        } catch (Exception e) {
-            return ResponseEntity.status(200).body("返回失败");
-        }
+        return ResponseEntity.status(200).body(userService.showConcreteUser(userId));
     }
 
     @ApiOperation("修改某用户信息")
@@ -80,7 +76,7 @@ public class UserController {
             userService.updateUser(userId , updateUserInfo);
             return ResponseEntity.status(200).body("修改成功");
         } catch (Exception e) {
-            return ResponseEntity.status(200).body("修改失败");
+            return ResponseEntity.status(-1).body("修改失败");
         }
     }
 }

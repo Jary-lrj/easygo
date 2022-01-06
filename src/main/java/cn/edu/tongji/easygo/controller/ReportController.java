@@ -67,7 +67,7 @@ public class ReportController {
             reportService.updateReport(reportId,report);
             return ResponseEntity.status(200).body("修改成功");
         } catch (Exception e) {
-            return ResponseEntity.status(200).body("修改失败");
+            return ResponseEntity.status(-1).body("修改失败");
         }
     }
 }

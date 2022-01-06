@@ -42,7 +42,7 @@ public class AdvertisementController {
         }
         catch(Exception e)
         {
-            return ResponseEntity.status(200).body("查询失败");
+            return ResponseEntity.status(-1).body("查询失败");
         }
     }
 
@@ -60,7 +60,7 @@ public class AdvertisementController {
             advertisementService.updateAdvertisement(advertisementId,advertisement);
             return ResponseEntity.status(200).body("修改成功");
         } catch (Exception e) {
-            return ResponseEntity.status(200).body("修改失败");
+            return ResponseEntity.status(-1).body("修改失败");
         }
     }
 
