@@ -19,4 +19,6 @@ public interface InformationService {
     List<Information> findInformationByUser(Long userId);
 
     List<Information> findInformationByTypeAndContent(Integer informationType, String content);
+
+    List<Information> findInformationByKeyword(String keyword);
 }

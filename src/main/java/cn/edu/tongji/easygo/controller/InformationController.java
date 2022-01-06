@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/information")
 @RestController
 @CrossOrigin
-@Api(value="需求和物品",tags = "需求和物品",description = "需求和物品")
+@Api(value = "需求和物品", tags = "需求和物品", description = "需求和物品")
 public class InformationController {
 
     @Resource
@@ -21,27 +21,27 @@ public class InformationController {
 
     @ApiOperation("添加需求/物品")
     @PostMapping("")
-    public ResponseEntity<Object> addInformation(@RequestBody Information information){
+    public ResponseEntity<Object> addInformation(@RequestBody Information information) {
         informationService.addInformation(information);
         return ResponseEntity.status(200).body("添加成功");
     }
 
     @ApiOperation("删除某需求/物品")
     @DeleteMapping("{informationId}")
-    public ResponseEntity<Object> deleteInformation(@PathVariable("informationId") Long informationId){
+    public ResponseEntity<Object> deleteInformation(@PathVariable("informationId") Long informationId) {
         informationService.deleteInformation(informationId);
         return ResponseEntity.status(200).body("删除成功");
     }
 
     @ApiOperation("查询某需求/物品信息")
     @GetMapping("{informationId}")
-    public ResponseEntity<Object> showInformation(@PathVariable("informationId") Long informationId){
+    public ResponseEntity<Object> showInformation(@PathVariable("informationId") Long informationId) {
         return ResponseEntity.status(200).body(informationService.showInformation(informationId));
     }
 
     @ApiOperation("修改某需求/物品信息")
     @PutMapping("{informationId}")
-    public ResponseEntity<Object> updateInformation(@PathVariable("informationId") Long informationId,@RequestBody Information information){
+    public ResponseEntity<Object> updateInformation(@PathVariable("informationId") Long informationId, @RequestBody Information information) {
         try {
             informationService.updateInformation(informationId, information);
             return ResponseEntity.status(200).body("修改成功");
@@ -52,14 +52,14 @@ public class InformationController {
 
     @ApiOperation("查询需求/物品信息列表")
     @GetMapping("/type/{informationType}")
-    public ResponseEntity<Object> showInformationByType(@PathVariable Integer informationType){
+    public ResponseEntity<Object> showInformationByType(@PathVariable Integer informationType) {
         List<Information> informationList = informationService.findInformationByType(informationType);
         return ResponseEntity.status(200).body(informationList);
     }
 
     @ApiOperation("查询某用户的需求和物品信息")
     @GetMapping("/user/{userId}")
-    public ResponseEntity<Object> showInformationByUser(@PathVariable Long userId){
+    public ResponseEntity<Object> showInformationByUser(@PathVariable Long userId) {
         List<Information> informationList = informationService.findInformationByUser(userId);
         return ResponseEntity.status(200).body(informationList);
     }
@@ -67,11 +67,14 @@ public class InformationController {
     @ApiOperation("按类型和名称搜索需求/物品信息")
     @GetMapping("search/{informationType}/{content}")
     public ResponseEntity<Object> searchByTypeAndContent(@PathVariable Integer informationType,
-                                                         @PathVariable String content){
-        List<Information> informationList = informationService.findInformationByTypeAndContent(informationType,content);
+                                                         @PathVariable String content) {
+        List<Information> informationList = informationService.findInformationByTypeAndContent(informationType, content);
         return ResponseEntity.status(200).body(informationList);
     }
 
-
+    @GetMapping("search/{keyword}")
+    public ResponseEntity<Object> searchByKeyword(@PathVariable String keyword) {
+        return ResponseEntity.status(200).body(informationService.findInformationByKeyword(keyword));
+    }
 
 }
