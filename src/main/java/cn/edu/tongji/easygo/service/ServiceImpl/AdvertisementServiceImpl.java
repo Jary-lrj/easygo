@@ -4,6 +4,7 @@ import cn.edu.tongji.easygo.model.Advertisement;
 import cn.edu.tongji.easygo.repository.AdvertisementRepository;
 import cn.edu.tongji.easygo.service.AdvertisementService;
 import cn.edu.tongji.easygo.util.JpaUtil;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +49,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisementRepository.deleteAdvertisementByAdvertisementId(advertisementId);
     }
 
+    @Cacheable(value="index",key="'frontAdvertisements'")
     @Override
     public List<Advertisement> showFrontAdvertisement() {
         List<Advertisement> advertisements = advertisementRepository.findAdvertisementsByAdvertisementState(1);
