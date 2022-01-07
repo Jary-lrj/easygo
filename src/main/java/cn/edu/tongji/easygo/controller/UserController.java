@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("api/v1/user")
 @CrossOrigin
-@Api(value="用户",tags = "用户",description = "用户")
+@Api(value = "用户", tags = "用户", description = "用户")
 public class UserController {
     @Resource
     private UserService userService;
@@ -31,6 +31,7 @@ public class UserController {
             info.setUserId(loginUser.getUserId());
             info.setUserName(loginUser.getUserName());
             info.setUserAvatar(loginUser.getUserAvatar());
+            info.setUserRole(loginUser.getUserRole());
             info.setResult("登录成功");
             info.setToken(StpUtil.getTokenValue());
             return Result.wrapSuccessfulResult(info);
@@ -58,7 +59,7 @@ public class UserController {
     @ApiOperation("分页查询所有用户信息")
     @GetMapping("{pageNum}/{sizeNum}")
     public Result showAllUsers(@PathVariable Integer pageNum,
-                                               @PathVariable Integer sizeNum){
+                               @PathVariable Integer sizeNum) {
         if (!StpUtil.hasRole("admin"))
             return Result.wrapErrorResult("您无权操作");
         return Result.wrapSuccessfulResult(userService.showAllUser(pageNum, sizeNum));
@@ -74,7 +75,7 @@ public class UserController {
     @PutMapping("{userId}")
     public Result updateUser(@PathVariable("userId") Long userId, @RequestBody User updateUserInfo) {
         try {
-            userService.updateUser(userId , updateUserInfo);
+            userService.updateUser(userId, updateUserInfo);
             return Result.wrapSuccessfulResult("修改成功");
         } catch (Exception e) {
             return Result.wrapErrorResult("修改失败");

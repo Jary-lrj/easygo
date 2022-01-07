@@ -23,7 +23,7 @@ public class ReportController {
     @PostMapping("")
     public Result addReport(@RequestBody ReportVo reportVo) {
         Report report = new Report();
-        report.setReportStatus(0);//未审核
+        report.setReportStatus(false);//未审核
         report.setReportThingId(reportVo.getReportThingId());
         report.setReportReason(reportVo.getReportReason());
         report.setReportType(reportVo.getReportType());
@@ -69,12 +69,8 @@ public class ReportController {
 
     @ApiOperation("修改举报信息")
     @PutMapping("{reportId}")
-    public Result updateReport(@PathVariable Long reportId, @RequestBody Report report) {
-        try {
-            reportService.updateReport(reportId, report);
-            return Result.wrapSuccessfulResult("修改成功");
-        } catch (Exception e) {
-            return Result.wrapErrorResult("修改失败");
-        }
+    public Result updateReport(@PathVariable("reportId") Long reportId, @RequestBody Report report) {
+        reportService.updateReport(reportId, report);
+        return Result.wrapSuccessfulResult("修改成功");
     }
 }
