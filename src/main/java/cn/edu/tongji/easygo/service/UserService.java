@@ -2,6 +2,7 @@ package cn.edu.tongji.easygo.service;
 
 import cn.edu.tongji.easygo.dto.UserRegisterDTO;
 import cn.edu.tongji.easygo.model.User;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface UserService {
 
     public void deleteUser(Long userId);
 
-    public List<User> showAllUser(int pageNum,int sizeNum);
+    public List<User> showAllUser(int pageNum, int sizeNum);
 
     public User showConcreteUser(Long userId);
 

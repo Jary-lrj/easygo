@@ -57,12 +57,10 @@ public class UserController {
     }
 
     @ApiOperation("分页查询所有用户信息")
-    @GetMapping("{pageNum}/{sizeNum}")
-    public Result showAllUsers(@PathVariable Integer pageNum,
-                               @PathVariable Integer sizeNum) {
-        if (!StpUtil.hasRole("admin"))
-            return Result.wrapErrorResult("您无权操作");
-        return Result.wrapSuccessfulResult(userService.showAllUser(pageNum, sizeNum));
+    @GetMapping()
+    public Result showAllUsers(@RequestParam("page") Integer page,
+                               @RequestParam("size") Integer size) {
+        return Result.wrapSuccessfulResult(userService.showAllUser(page, size));
     }
 
     @ApiOperation("查询某用户信息")

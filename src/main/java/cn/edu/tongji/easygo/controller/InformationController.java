@@ -19,6 +19,13 @@ public class InformationController {
     @Resource
     InformationService informationService;
 
+    @ApiOperation("所有需求")
+    @GetMapping ("")
+    public Result getAllInformation(@RequestParam("size") int size,@RequestParam("page") int page) {
+
+        return Result.wrapSuccessfulResult(informationService.findAllInformation(page,size));
+    }
+
     @ApiOperation("添加需求/物品")
     @PostMapping("")
     public Result addInformation(@RequestBody Information information) {

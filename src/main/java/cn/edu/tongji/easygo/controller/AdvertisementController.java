@@ -25,7 +25,7 @@ public class AdvertisementController {
         return Result.wrapSuccessfulResult("添加成功");
     }
 
-    @ApiOperation("删除某需求/物品")
+    @ApiOperation("删除某广告")
     @DeleteMapping("{advertisementId}")
     public Result deleteAdvertisement(@PathVariable Long advertisementId){
         advertisementService.deleteAdvertisement(advertisementId);
@@ -33,9 +33,9 @@ public class AdvertisementController {
     }
 
     @ApiOperation("分页查询所有广告信息")
-    @GetMapping("{pageNum}/{sizeNum}")
-    public Result showAllAdvertisements(@PathVariable Integer pageNum,
-                                                        @PathVariable Integer sizeNum){
+    @GetMapping()
+    public Result showAllAdvertisements(@RequestParam("page") Integer pageNum,
+                                                        @RequestParam("size") Integer sizeNum){
         try{
             List<Advertisement> advertisements = advertisementService.showAllAdvertisement(pageNum, sizeNum);
             return Result.wrapSuccessfulResult(advertisements);

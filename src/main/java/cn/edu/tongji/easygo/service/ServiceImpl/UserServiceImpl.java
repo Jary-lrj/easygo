@@ -5,11 +5,13 @@ import cn.edu.tongji.easygo.model.*;
 import cn.edu.tongji.easygo.repository.*;
 import cn.edu.tongji.easygo.service.UserService;
 import cn.edu.tongji.easygo.util.JpaUtil;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.print.attribute.standard.PageRanges;
 import java.util.List;
 
 @Service
@@ -47,9 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> showAllUser(int pageNum,int sizeNum) {
-        Pageable page = PageRequest.of(pageNum,sizeNum);
-        return userRepository.findAll(page).getContent();
+    public List<User> showAllUser(int pageNum, int sizeNum) {
+        Pageable page = PageRequest.of(pageNum, sizeNum);
+        return userRepository.findAllUser(page).getContent();
     }
 
     @Override

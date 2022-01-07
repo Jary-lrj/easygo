@@ -5,6 +5,9 @@ import cn.edu.tongji.easygo.repository.InformationRepository;
 import cn.edu.tongji.easygo.service.InformationService;
 import cn.edu.tongji.easygo.util.JpaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +36,7 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public void updateInformation(Long informationId, Information information) {
         Information originInformation = informationRepository.findByInformationId(informationId);
-        JpaUtil.copyNotNullProperties(information,originInformation);
+        JpaUtil.copyNotNullProperties(information, originInformation);
         informationRepository.save(originInformation);
     }
 
@@ -51,12 +54,18 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public List<Information> findInformationByTypeAndContent(Integer informationType, String content) {
-        List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType,content);
+        List<Information> allByInformationType = informationRepository.findByTypeAndContent(informationType, content);
         return allByInformationType;
     }
 
     @Override
     public List<Information> findInformationByKeyword(String keyword) {
         return informationRepository.findByKeyword(keyword);
+    }
+
+    @Override
+    public List<Information> findAllInformation(int page, int size) {
+        Pageable request = PageRequest.of(page, size);
+        return informationRepository.findAllInformation(request).getContent();
     }
 }
