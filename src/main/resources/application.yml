@@ -17,6 +17,22 @@ spring:
         max-wait: -1
         max-idle: 5
         min-idle: 0
+  mail:
+    host: smtp.163.com
+    username: goeasy2022@163.com
+    password: ENC(ATXZceQSkyqBtoB9khOdmRkqEGcZcL6XXXROcD+OVKM=)
+    default-encoding: UTF-8
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+          port: 465
+
 
 jasypt:
   encryptor:
